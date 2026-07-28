@@ -28,11 +28,9 @@ function contact(event) {
 }
 
 function openModal(event) {
-  const modal = document.querySelector(`.modal`);
-  modal.classList += ` modal--visible`;
+  document.body.classList += ` modal--visible`;
 }
 
 function exitModal(event) {
-  const modal = document.querySelector(`.modal`);
-  modal.classList.remove(`modal--visible`);
+ document.body.classList.remove(`modal--visible`);
 }
