@@ -5,11 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
+    <script src="index.js" defer></script>
     <script
       src="https://kit.fontawesome.com/534fbe0e0c.js"
       crossorigin="anonymous"
     ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "kNFVWhJ-R6QFaZTPf",
+        });
+      })();
+    </script>
   </head>
   <body>
     <section id="landing">
@@ -18,27 +29,20 @@
           <img class="personal-logo" src="./assets/logo.png" alt="Logo" />
         </figure>
         <div class="nav__links">
-          <a
-            href="#"
-            class="nav__link nav__link--anchor link__hover link__hover--black"
-            >About</a
-          >
+          <a href="#" class="nav__link nav__link--anchor link__hover">About</a>
 
-          <a
-            href="#projects"
-            class="nav__link nav__link--anchor link__hover link__hover--black"
+          <a href="#projects" class="nav__link nav__link--anchor link__hover"
             >Projects</a
           >
 
           <a
             href="#"
-            class="nav__link nav__link--anchor link__hover link__hover--black"
+            class="nav__link nav__link--anchor link__hover"
+            onclick="openModal(event)"
             >Contact</a
           >
 
-          <a
-            href="#"
-            class="nav__link nav__link--anchor link__hover link__hover--black"
+          <a href="#" class="nav__link nav__link--anchor link__hover"
             ><i class="fa-solid fa-circle-half-stroke click"></i
           ></a>
         </div>
@@ -79,12 +83,104 @@
           </div>
         </div>
       </header>
-      <button class="mail__button click">
+      <button class="mail__button click" onclick="openModal(event)">
         <i class="fa-solid fa-envelope"></i>
       </button>
       <a href="#projects" class="scroll">
         <div class="scroll__icon click"></div>
       </a>
+      <div class="modal">
+        <div class="modal__half modal__about">
+          <h3 class="modal__about--title">Here's a bit about me.</h3>
+          <h4 class="modal__about--sub-title">
+            <span class="text--accent">Frontend Software Engineer.</span>
+          </h4>
+          <p class="modal__about--para">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex?
+            Delectus perspiciatis explicabo odit quo officia, quos facere
+            reiciendis eius
+            <span class="text--accent">tenetur placeat</span> corrupti beatae
+            fugit laudantium error minus est vero.<br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore,
+            debitis.
+            <span class="text--accent">Tempora quia </span>exercitationem
+            labore? Sequi laborum sunt autem ipsam quas consectetur tenetur
+            reprehenderit vel, odio,
+            <span class="text--accent">quo quia quis magni pariatur.</span>
+          </p>
+          <div class="modal__languages">
+            <figure class="modal__language--wrapper">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/1280px-HTML5_Badge.svg.png?_=20110131171049"
+                alt="HTML"
+                class="modal__language"
+              />
+              <span class="language__name">HTML</span>
+            </figure>
+
+            <figure class="modal__language--wrapper">
+              <img
+                src="https://cdn.iconscout.com/icon/free/png-256/css-131-722685.png"
+                alt="CSS"
+                class="modal__language"
+              />
+              <span class="language__name">CSS</span>
+            </figure>
+
+            <figure class="modal__language--wrapper">
+              <img
+                src="https://cdn.iconscout.com/icon/free/png-256/javascript-1-225993.png"
+                alt="JavaScript"
+                class="modal__language"
+              />
+              <span class="language__name">JavaScript</span>
+            </figure>
+
+            <figure class="modal__language--wrapper">
+              <img
+                src="https://cdn.iconscout.com/icon/free/png-256/typescript-3521774-2945272.png"
+                alt="Typescript"
+                class="modal__language"
+              />
+              <span class="language__name">TypeScript</span>
+            </figure>
+          </div>
+        </div>
+        <div class="modal__half modal__contact">
+          <h3 class="modal__contact--title">Let's have a chat!</h3>
+          <h4 class="modal__contact--sub-title">
+            I'm currently exploring new opportunities.
+          </h4>
+          <form action="" id="contact__form" onsubmit="contact(event)">
+            <div class="form__item">
+              <label class="form__item--label">Name</label>
+              <input class="input" name="user_name" type="text" />
+            </div>
+
+            <div class="form__item">
+              <label class="form__item--label">E-mail</label>
+              <input class="input" name="user_email" type="email" />
+            </div>
+
+            <div class="form__item">
+              <label class="form__item--label">Message</label>
+              <textarea class="input" name="message" type="text"></textarea>
+            </div>
+            <button class="modal__contact--button">Send it my way!</button>
+          </form>
+          <div class="modal__overlay modal__overlay--loading">
+            <i class="fas fa-spinner"></i>
+          </div>
+          <div class="modal__overlay modal__overlay--success">
+            Thanks for the message! <br />Looking forward to speaking with you
+            soon.
+          </div>
+          <i
+            class="fas fa-times modal__exit click"
+            onclick="exitModal(event)"
+          ></i>
+        </div>
+      </div>
     </section>
     <section id="projects">
       <div class="container">
@@ -163,4 +259,42 @@
       </div>
     </section>
   </body>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <figure>
+          <img src="./assets/logo.png" alt="Logo" class="personal-logo" />
+        </figure>
+        <div class="social__links">
+          <a
+            href="https://github.com/greenlein/"
+            target="_blank"
+            class="social__link link__hover--white"
+            >GitHub</a
+          >
+          <a
+            href="https://www.linkedin.com/in/sebastian-giraldo-mejia/"
+            target="_blank"
+            class="social__link link__hover--white"
+            >LinkedIn</a
+          >
+          <a
+            href="#"
+            class="social__link link__hover--white"
+            onclick="openModal(event)"
+            >Email</a
+          >
+          <a
+            href="./assets/Sebastian Giraldo Resume.pdf"
+            target="_blank"
+            class="social__link link__hover--white"
+            >Resume</a
+          >
+        </div>
+        <div class="copyright">
+          Copyright © Sebastian Giraldo 2026. All Rights Reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
 </html>
