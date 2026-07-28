@@ -1,6 +1,13 @@
-//template_pnox7cc
-// service_bgq6odq
-// kNFVWhJ-R6QFaZTPf
+let contrastToggle = false;
+
+function toggleContrast() {
+  contrastToggle = !contrastToggle;
+  if (contrastToggle) {
+    return (document.body.classList += " dark-theme");
+  }
+
+  document.body.classList.remove(`dark-theme`);
+}
 
 function contact(event) {
   event.preventDefault();
@@ -32,5 +39,19 @@ function openModal(event) {
 }
 
 function exitModal(event) {
- document.body.classList.remove(`modal--visible`);
+  document.body.classList.remove(`modal--visible`);
+}
+
+function moveBackground() {
+  const shapes = document.querySelectorAll(".shape");
+  const scaleFactor = 1 / 20;
+  const x = event.clientX * scaleFactor;
+  const y = event.clientY * scaleFactor;
+
+  for (i = 0; i < shapes.length; i++) {
+    const isOdd = i % 2 !== 0;
+    const boolInteger = isOdd ? -1 : 1;
+    shapes[i].style.transform =
+      `translate(${x * boolInteger}px, ${y * boolInteger}px)`;
+  }
 }
